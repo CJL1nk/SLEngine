@@ -7,7 +7,7 @@
 int main() {
 
 	sf::Vector2u windowSize = sf::Vector2u(1920, 1080);
-	sf::RenderWindow window(sf::VideoMode(windowSize), "Habitarium");
+	sf::RenderWindow window(sf::VideoMode(windowSize), "Window");
 	window.setFramerateLimit(60);
 
 	while (window.isOpen()) {
