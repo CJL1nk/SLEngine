@@ -13,6 +13,7 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(SLEngine src/main.cpp
+                        src/objects/StaticObject.cpp
 )
 
 target_link_libraries(SLEngine PRIVATE SFML::Graphics SFML::Window SFML::Audio)

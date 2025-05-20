@@ -11,12 +11,26 @@
 class Hitbox {
 
     public:
-        Hitbox();
+        Hitbox(GameObject* object, float width, float height) : _obj(object), _width(width), _height(height) {
+            this->_pos = object->getPosPtr();
+        };
+
+        Position getPos() {
+            return *this->_pos;
+        }
+
+        float getWidth() {
+            return this->_width;
+        }
+
+        float getHeight() {
+            return this->_height;
+        }
 
     private:
-        float width, height;
-        Position* pos; // Position is a POINTER so it moves with its attached object
-        GameObject* obj;
+        float _width, _height;
+        const Position* _pos; // Position is a POINTER so it moves with its attached object
+        GameObject* _obj;
 };
 
 #endif //HITBOX_H
