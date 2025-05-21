@@ -6,13 +6,14 @@
 #define TEXTLABEL_H
 
 #include "../includes.h"
+#include "UIObject.h"
 
 namespace UI {
 
 	/**
 	* The TextLabel class allows the user to create a text label of any given font and put it somewhere on screen
 	*/
-	class TextLabel {
+	class TextLabel : public UIObject {
 		public:
             TextLabel();
         private:

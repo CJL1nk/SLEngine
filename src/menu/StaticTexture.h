@@ -3,6 +3,7 @@
 //
 
 #include "../includes.h"
+#include "UIObject.h"
 
 #ifndef STATICTEXTURE_H
 #define STATICTEXTURE_H
@@ -12,7 +13,7 @@ namespace UI {
 	/**
 	* The StaticTexture class allows some static texture object to be placed anywhere on the screen
 	*/
-	class StaticTexture {
+	class StaticTexture : public UIObject {
 
 		public:
 			StaticTexture();

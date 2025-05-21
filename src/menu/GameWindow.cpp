@@ -36,12 +36,21 @@ namespace UI
     void GameWindow::drawScene() {
 
         std::unordered_map<unsigned int, std::vector<GameObject*>> objectMap = this->_scene->getObjectMap();
+        std::unordered_map<unsigned int, std::vector<GameObject*>> uiObjectMap = this->_scene->getUIObjectMap();
 
         this->_window.clear(sf::Color::Black);
 
-        for (int i = 0; i <= this->_scene->getHighestZ(); i++) {
+        // Draw all game objects first
+        for (int i = 0; i <= this->_scene->getHighestObjZ(); i++) {
             for (int j = 0; j < objectMap[i].size(); j++) {
                 this->_window.draw(*objectMap[i][j]->getSprite());
+            }
+        }
+
+        // Draw all UI objects above everything else
+        for (int i = 0; i <= this->_scene->getHighestUIZ(); i++) {
+            for (int j = 0; j < uiObjectMap[i].size(); j++) {
+                this->_window.draw(*uiObjectMap[i][j]->getSprite());
             }
         }
 
@@ -55,12 +64,9 @@ namespace UI
         }
     }
 
-
     void GameWindow::close() {
         this->_window.close();
     }
-
-
 
     bool GameWindow::isOpen() const {
         return _window.isOpen();

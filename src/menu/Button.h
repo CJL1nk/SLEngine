@@ -6,13 +6,14 @@
 #define BUTTON_H
 
 #include "../includes.h"
+#include "UIObject.h"
 
 namespace UI {
 
 	/**
 	* The Button class creates a clickable button with the ability to call a user specififed function callback
 	*/
-	class Button {
+	class Button : public UIObject {
 
 	public:
 		Button();
