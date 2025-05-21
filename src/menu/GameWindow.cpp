@@ -36,7 +36,7 @@ namespace UI
     void GameWindow::drawScene() {
 
         std::unordered_map<unsigned int, std::vector<GameObject*>> objectMap = this->_scene->getObjectMap();
-        std::unordered_map<unsigned int, std::vector<GameObject*>> uiObjectMap = this->_scene->getUIObjectMap();
+        std::unordered_map<unsigned int, std::vector<UIObject*>> uiObjectMap = this->_scene->getUIObjectMap();
 
         this->_window.clear(sf::Color::Black);
 

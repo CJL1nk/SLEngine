@@ -16,7 +16,7 @@ int main() {
 	sf::Sprite spr = sf::Sprite(texture);
 	StaticObject background = StaticObject(Position(0, 0, 0), spr);
 
-	sf::Texture texture2("textures/wood_1.jpg", false, sf::IntRect({0, 0}, {16, 16}));
+	sf::Texture texture2("textures/wood_1.jpg", false, sf::IntRect({0, 0}, {64, 64}));
 	sf::Sprite spr2 = sf::Sprite(texture2);
 	StaticObject wood = StaticObject(Position(100, 100, 1), spr2);
 

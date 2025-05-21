@@ -52,8 +52,8 @@ namespace UI {
         return this->_objectMap;
     };
 
-    std::unordered_map<unsigned int, std::vector<GameObject*>> Scene::getUIObjectMap() const {
-        return this->_objectMap;
+    std::unordered_map<unsigned int, std::vector<UIObject*>> Scene::getUIObjectMap() const {
+        return this->_uiObjectMap;
     };
 
 }

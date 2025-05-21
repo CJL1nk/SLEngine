@@ -27,7 +27,7 @@ namespace UI {
 
 			std::vector<GameObject*> getObjects() const;
 			std::unordered_map<unsigned int, std::vector<GameObject*>> getObjectMap() const;
-			std::unordered_map<unsigned int, std::vector<GameObject*>> getUIObjectMap() const;
+			std::unordered_map<unsigned int, std::vector<UIObject*>> getUIObjectMap() const;
 		    unsigned int getHighestObjZ() const;
 		    unsigned int getHighestUIZ() const;
 
