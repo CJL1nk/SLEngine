@@ -3,7 +3,7 @@
 //
 
 #include "StaticObject.h"
-#define ts this
+#define ts this // ts pointer 💀
 
 StaticObject::StaticObject() : _hitbox(nullptr), _sprite(nullptr), _pos(Position(0.0f, 0.0f, 0.0f)) {
     const sf::Texture texture = sf::Texture(sf::Vector2u{0,0});
