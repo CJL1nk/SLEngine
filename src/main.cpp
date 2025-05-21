@@ -39,7 +39,7 @@ int main() {
 	window.setScene(scene);
 
 	// Some nice music to play
-	sf::SoundBuffer buffer("../audios/dark souls intro thing.mp3");
+	sf::SoundBuffer buffer("../audios/Crateman.mp3");
 	sf::Sound sound(buffer);
 	sound.setLooping(true);
 	sound.play();
@@ -66,7 +66,8 @@ int main() {
 		}
 
 		background.move(Position(-0.5, 0));
+		wood.rotate(0.5);
 	}
 
-	return 0;
+	return 0x00000000;
 }

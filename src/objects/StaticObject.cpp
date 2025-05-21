@@ -56,6 +56,8 @@ void StaticObject::move(const Position pos) {
 
 void StaticObject::rotate(const float degrees) {
     this->_pos.rotation += degrees;
+
+    this->_sprite->setRotation(sf::degrees(this->_pos.rotation));
 }
 
 
@@ -83,5 +85,7 @@ void StaticObject::setPos(const Position &pos) {
 
 void StaticObject::setRotation(const float degrees) {
     this->_pos.rotation = degrees;
+
+    this->_sprite->setRotation(sf::degrees(this->_pos.rotation));
 }
 
