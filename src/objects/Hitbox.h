@@ -6,7 +6,6 @@
 #define HITBOX_H
 
 #include "../includes.h"
-#include "GameObject.h"
 
 /**
  * The Hitbox class defines a hitbox, which is attached to any game object

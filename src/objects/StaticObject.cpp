@@ -60,6 +60,17 @@ void StaticObject::rotate(const float degrees) {
     this->_sprite->setRotation(sf::degrees(this->_pos.rotation));
 }
 
+bool StaticObject::collidesWith(const StaticObject &other) const {
+
+    if (this->getHitbox().getPos().x < other.getHitbox().getPos().x + other.getHitbox().getWidth() &&
+    this->getHitbox().getPos().x + this->getHitbox().getWidth() > other.getHitbox().getPos().x &&
+    this->getHitbox().getPos().y < other.getHitbox().getPos().y + other.getHitbox().getHeight() &&
+    this->getHitbox().getPos().y + this->getHitbox().getHeight() > other.getHitbox().getPos().y) {
+        return true;
+    }
+    return false;
+}
+
 
 Position StaticObject::getPos() const {
     return this->_pos;

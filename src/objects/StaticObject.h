@@ -64,6 +64,13 @@ class StaticObject : public GameObject{
         void rotate(float degrees);
 
         /**
+         * Determines whether referenced object's hitbox collides with another given objects hitbox
+         * @param other Object to test collision with
+         * @return True if objects collide, false otherwise
+         */
+        [[nodiscard]] bool collidesWith(const StaticObject& other) const;
+
+        /**
          * Returns the position of referenced object
          * @return Position of referenced object
          */
