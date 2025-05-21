@@ -8,6 +8,9 @@
 #include "GameObject.h"
 #include "Hitbox.h"
 
+/**
+ * The StaticObject class represents some game object with physics that can move on its own
+ */
 class PhysicsObject : public GameObject {
 
     public:

@@ -16,12 +16,29 @@ namespace UI {
 	class StaticTexture : public UIObject {
 
 		public:
-			StaticTexture();
-			StaticTexture(sf::Texture& texture): _texture(texture) {};
+			/**
+			 * Default constructor, instantiates a new static texture on screen
+			 * @param pos Position of object
+			 * @param sprite Sprite of object
+			 */
+			StaticTexture(const Position pos, sf::Sprite& sprite) : _sprite(&sprite), _pos(pos) {
+				_sprite->setPosition({_pos.x, _pos.y});
+			};
+
+			/**
+			 * Returns the position of referenced object
+			 * @return Position of referenced object
+			 */
+			[[nodiscard]] Position getPos() const override;
+			/**
+			 * Returns the sprite of referenced object
+			 * @return Sprite of referenced object
+			 */
+			[[nodiscard]] const sf::Sprite* getSprite() const override;
 
 	    private:
-	        sf::Texture _texture;
-            Position pos;
+	        sf::Sprite* _sprite;;
+            Position _pos;
 	};
 }
 

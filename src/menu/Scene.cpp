@@ -18,7 +18,7 @@ namespace UI {
             this->_highestObjZ = object.getPos().zOrder;
         }
 
-        _objectMap[object.getPos().zOrder].push_back(&object);
+        _objectMap[object.getPos().zOrder].push_back(&object); // Add to map
 
         return true;
     }
@@ -31,7 +31,7 @@ namespace UI {
             this->_highestUIZ = uiObject.getPos().zOrder;
         }
 
-        _uiObjectMap[uiObject.getPos().zOrder].push_back(&uiObject);
+        _uiObjectMap[uiObject.getPos().zOrder].push_back(&uiObject); // Add to map
 
         return true;
     }

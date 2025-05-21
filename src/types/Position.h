@@ -5,6 +5,9 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+/**
+ * Struct containing various 2D positional data
+ */
 struct Position {
     float x;
     float y;
