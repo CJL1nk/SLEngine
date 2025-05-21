@@ -68,7 +68,7 @@ class StaticObject : public GameObject{
          * @param other Object to test collision with
          * @return True if objects collide, false otherwise
          */
-        [[nodiscard]] bool collidesWith(const StaticObject& other) const;
+        [[nodiscard]] bool collidesWith(const GameObject& other) const;
 
         /**
          * Returns the position of referenced object
@@ -81,10 +81,10 @@ class StaticObject : public GameObject{
          */
         [[nodiscard]] const Position* getPosPtr() const override;
         /**
-         * Returns the hitbox of referenced object
-         * @return Hitbox of referenced object
+         * Returns a pointer to the hitbox of referenced object
+         * @return Pointer to the hitbox of referenced object
          */
-        [[nodiscard]] Hitbox getHitbox() const;
+        [[nodiscard]] const Hitbox* getHitbox() const override;
         /**
          * Returns a pointer to the sprite of referenced object
          * @return pPointer to the sprite of referenced object

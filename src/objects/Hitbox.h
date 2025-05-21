@@ -6,6 +6,9 @@
 #define HITBOX_H
 
 #include "../includes.h"
+#include "GameObject.h"
+
+class GameObject;
 
 /**
  * The Hitbox class defines a hitbox, which is attached to any game object
@@ -20,31 +23,24 @@ class Hitbox {
          * @param width Hitbox width
          * @param height Hitbox height
          */
-        Hitbox(GameObject* object, const float width, const float height) : _width(width), _height(height), _obj(object) {
-            this->_pos = object->getPosPtr();
-        };
+        Hitbox(GameObject* object, float width, float height);
 
         /**
          * Returns the position of referenced Hitbox object
          * @return Position of referenced Hitbox object
          */
-        [[nodiscard]] Position getPos() const {
-            return *this->_pos;
-        }
+        [[nodiscard]] Position getPos() const;
         /**
          * Returns width of referenced Hitbox object
          * @return Width of referenced Hitbox object
          */
-        [[nodiscard]] float getWidth() const {
-            return this->_width;
-        }
+        [[nodiscard]] float getWidth() const;
         /**
          * Returns height of referenced Hitbox object
          * @return Height of referenced Hitbox object
          */
-        [[nodiscard]] float getHeight() const {
-            return this->_height;
-        }
+        [[nodiscard]] float getHeight() const;
+
 
     private:
         float _width, _height;

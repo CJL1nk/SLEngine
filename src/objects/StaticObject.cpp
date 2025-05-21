@@ -60,12 +60,12 @@ void StaticObject::rotate(const float degrees) {
     this->_sprite->setRotation(sf::degrees(this->_pos.rotation));
 }
 
-bool StaticObject::collidesWith(const StaticObject &other) const {
+bool StaticObject::collidesWith(const GameObject &other) const {
 
-    if (this->getHitbox().getPos().x < other.getHitbox().getPos().x + other.getHitbox().getWidth() &&
-    this->getHitbox().getPos().x + this->getHitbox().getWidth() > other.getHitbox().getPos().x &&
-    this->getHitbox().getPos().y < other.getHitbox().getPos().y + other.getHitbox().getHeight() &&
-    this->getHitbox().getPos().y + this->getHitbox().getHeight() > other.getHitbox().getPos().y) {
+    if (this->getHitbox()->getPos().x < other.getHitbox()->getPos().x + other.getHitbox()->getWidth() &&
+    this->getHitbox()->getPos().x + this->getHitbox()->getWidth() > other.getHitbox()->getPos().x &&
+    this->getHitbox()->getPos().y < other.getHitbox()->getPos().y + other.getHitbox()->getHeight() &&
+    this->getHitbox()->getPos().y + this->getHitbox()->getHeight() > other.getHitbox()->getPos().y) {
         return true;
     }
     return false;
@@ -80,8 +80,8 @@ const Position* StaticObject::getPosPtr() const {
     return &this->_pos;
 }
 
-Hitbox StaticObject::getHitbox() const {
-    return *this->_hitbox;
+const Hitbox* StaticObject::getHitbox() const {
+    return this->_hitbox;
 };
 
 const sf::Sprite* StaticObject::getSprite() const {

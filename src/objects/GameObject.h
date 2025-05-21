@@ -5,7 +5,10 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include "Hitbox.h"
 #include "../includes.h"
+
+class Hitbox;
 
 /**
 * The GameObject class is a wrapper class for various object-type classes
@@ -31,6 +34,11 @@ class GameObject {
          * @return Pointer to the sprite of referenced object
          */
         [[nodiscard]] virtual const sf::Sprite* getSprite() const = 0;
+        /**
+         * Returns a pointer to the hitbox of referenced object
+         * @return Pointer to the hitbox of referenced object
+         */
+        [[nodiscard]] virtual const Hitbox* getHitbox() const = 0;
 };
 
 
