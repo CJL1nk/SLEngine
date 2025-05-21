@@ -65,6 +65,7 @@ class StaticObject : public GameObject{
 
         /**
          * Determines whether referenced object's hitbox collides with another given objects hitbox
+         * Note that even if an object is removed from a scene, this will still continue to return as expected
          * @param other Object to test collision with
          * @return True if objects collide, false otherwise
          */

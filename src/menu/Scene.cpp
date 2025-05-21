@@ -11,77 +11,91 @@ namespace UI {
     }
 
     bool Scene::addObject(GameObject& object) {
-        this->_objects.push_back(&object);
 
-        // Set highest Z order
-        if (object.getPos().zOrder > this->_highestObjZ) {
-            this->_highestObjZ = object.getPos().zOrder;
+        if (!objectExists(object)) { // Only allow adding of an object once
+            this->_objects.push_back(&object);
+
+            // Set highest Z order
+            if (object.getPos().zOrder > this->_highestObjZ) {
+                this->_highestObjZ = object.getPos().zOrder;
+            }
+
+            _objectMap[object.getPos().zOrder].push_back(&object); // Add to map
+
+            return true;
         }
 
-        _objectMap[object.getPos().zOrder].push_back(&object); // Add to map
-
-        return true;
+        return false;
     }
 
     bool Scene::addUIObject(UIObject& uiObject) {
-        this->_uiObjects.push_back(&uiObject);
 
-        // Set highest Z order
-        if (uiObject.getPos().zOrder > this->_highestUIZ) {
-            this->_highestUIZ = uiObject.getPos().zOrder;
+        if (!uiObjectExists(uiObject)) { // Only allow adding of a UI object once
+            this->_uiObjects.push_back(&uiObject);
+
+            // Set highest Z order
+            if (uiObject.getPos().zOrder > this->_highestUIZ) {
+                this->_highestUIZ = uiObject.getPos().zOrder;
+            }
+
+            _uiObjectMap[uiObject.getPos().zOrder].push_back(&uiObject); // Add to map
+
+            return true;
         }
 
-        _uiObjectMap[uiObject.getPos().zOrder].push_back(&uiObject); // Add to map
-
-        return true;
+        return false;
     }
 
     bool Scene::removeObject(const GameObject& object) {
 
-        bool objectExists = false;
+        bool found = objectExists(object);
 
-        // Remove from all objects
-        for (int i = 0; i < this->_objects.size(); i++) {
-            if (this->_objects[i] == &object) {
-                objectExists = true;
-                this->_objects.erase(std::remove(this->_objects.begin(), this->_objects.end(), &object));
-            }
+        if (found) {
+            // Remove from all objects
+            this->_objects.erase(std::remove(this->_objects.begin(), this->_objects.end(), &object));
+            // Remove from all object map
+            this->_objectMap[object.getPos().zOrder].erase(std::remove(this->_objectMap[object.getPos().zOrder].begin(), this->_objectMap[object.getPos().zOrder].end(), &object)); // Holy line of code
         }
 
-        // Remove from Z order map
-        if (objectExists) {
-            for (int i = 0; i < this->_objectMap[object.getPos().zOrder].size(); i++) {
-                if (this->_objectMap[object.getPos().zOrder][i] == &object) {
-                    this->_objectMap[object.getPos().zOrder].erase(std::remove(this->_objects.begin(), this->_objects.end(), &object));
-                }
-            }
-        }
-
-        return objectExists;
+        return found;
     }
 
     bool Scene::removeUIObject(const UIObject& uiObject) {
 
-        bool objectExists = false;
+        bool found = uiObjectExists(uiObject);
 
-        // Remove from all objects
-        for (int i = 0; i < this->_uiObjects.size(); i++) {
-            if (this->_uiObjects[i] == &uiObject) {
-                objectExists = true;
-                this->_uiObjects.erase(std::remove(this->_uiObjects.begin(), this->_uiObjects.end(), &uiObject));
+        if (found) {
+            // Remove from all UI objects
+            this->_uiObjects.erase(std::remove(this->_uiObjects.begin(), this->_uiObjects.end(), &uiObject));
+            // Remove from UI object map
+            this->_uiObjectMap[uiObject.getPos().zOrder].erase(std::remove(this->_uiObjectMap[uiObject.getPos().zOrder].begin(), this->_uiObjectMap[uiObject.getPos().zOrder].end(), &uiObject)); // Holy line of code
+        }
+
+        return found;
+    }
+
+    bool Scene::objectExists(const GameObject &object) const {
+
+        // Get vector from map at given objects Z order, likely leading to fewer objects needing to be looped over
+        for (int i = 0; i < this->_objectMap.at(object.getPos().zOrder).size(); i++) {
+            if (this->_objectMap.at(object.getPos().zOrder)[i] == &object) {
+                return true;
             }
         }
 
-        // Remove from Z order map
-        if (objectExists) {
-            for (int i = 0; i < this->_uiObjectMap[uiObject.getPos().zOrder].size(); i++) {
-                if (this->_uiObjectMap[uiObject.getPos().zOrder][i] == &uiObject) {
-                    this->_uiObjectMap[uiObject.getPos().zOrder].erase(std::remove(this->_uiObjects.begin(), this->_uiObjects.end(), &uiObject));
-                }
+        return false;
+    }
+
+    bool Scene::uiObjectExists(const UIObject &uiObject) const {
+
+        // Get vector from map at given objects Z order, likely leading to fewer objects needing to be looped over
+        for (int i = 0; i < this->_uiObjectMap.at(uiObject.getPos().zOrder).size(); i++) {
+            if (this->_uiObjectMap.at(uiObject.getPos().zOrder)[i] == &uiObject) {
+                return true;
             }
         }
 
-        return objectExists;
+        return false;
     }
 
     std::vector<GameObject*> Scene::getObjects() const {

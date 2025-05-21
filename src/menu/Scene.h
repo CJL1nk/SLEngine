@@ -25,6 +25,7 @@ namespace UI {
 
 			/**
 			 * Adds some game object as an element to the scene
+			 * Some given object can only be added once
 			 * @param object Game object to add
 			 * @return True if successful, false otherwise
 			 */
@@ -44,10 +45,23 @@ namespace UI {
 			bool removeObject(const GameObject& object);
 			/**
 			 * Removes some UI object from the scene, if it exists
-			 * @param uiObject object to remove
+			 * @param uiObject UI object to remove
 			 * @return True if successful, false otherwise
 			 */
 			bool removeUIObject(const UIObject& uiObject);
+
+			/**
+			 * Returns whether an object exists in a scene
+			 * @param object Object to test
+			 * @return True if it exists, false otherwise
+			 */
+			bool objectExists(const GameObject& object) const;
+			/**
+			 * Returns whether a UI object exists in a scene
+			 * @param uiObject UI object to test
+			 * @return True if it exists, false otherwise
+			 */
+		    bool uiObjectExists(const UIObject& uiObject) const;
 
 			/**
 			 * Transitions the window from one scene to another

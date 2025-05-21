@@ -37,6 +37,7 @@ int main() {
 	scene.addObject(background);
 	scene.addObject(wood);
 	scene.addObject(wood2);
+	scene.addObject(wood2);
 	scene.addUIObject(btn);
 
 	// Create window and set its scene, scene can also be passed as another arg to constructor
