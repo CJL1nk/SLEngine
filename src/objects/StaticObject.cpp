@@ -3,6 +3,7 @@
 //
 
 #include "StaticObject.h"
+#define ts this
 
 StaticObject::StaticObject() : _hitbox(nullptr), _sprite(nullptr), _pos(Position(0.0f, 0.0f, 0.0f)) {
     const sf::Texture texture = sf::Texture(sf::Vector2u{0,0});
@@ -63,7 +64,7 @@ void StaticObject::rotate(const float degrees) {
 bool StaticObject::collidesWith(const GameObject &other) const {
 
     if (this->getHitbox()->getPos().x < other.getHitbox()->getPos().x + other.getHitbox()->getWidth() &&
-    this->getHitbox()->getPos().x + this->getHitbox()->getWidth() > other.getHitbox()->getPos().x &&
+    ts->getHitbox()->getPos().x + this->getHitbox()->getWidth() > other.getHitbox()->getPos().x &&
     this->getHitbox()->getPos().y < other.getHitbox()->getPos().y + other.getHitbox()->getHeight() &&
     this->getHitbox()->getPos().y + this->getHitbox()->getHeight() > other.getHitbox()->getPos().y) {
         return true;
