@@ -36,7 +36,21 @@ namespace UI
         for (const GameObject* obj : this->_scene->getObjects()) {
             this->_window.draw(*obj->getSprite());
         }
+        this->_window.display();
     }
+
+    void GameWindow::pollEvents() {
+
+        while (const std::optional event = this->_window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) this->_window.close();
+        }
+    }
+
+
+    void GameWindow::close() {
+        this->_window.close();
+    }
+
 
 
     bool GameWindow::isOpen() const {

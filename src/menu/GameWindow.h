@@ -23,6 +23,10 @@ namespace UI {
             bool setScene(Scene& scene);
             void drawScene();
 
+            void pollEvents();
+
+            void close();
+
             bool isOpen() const;
 
         private:

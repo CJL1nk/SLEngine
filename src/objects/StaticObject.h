@@ -18,8 +18,11 @@ class StaticObject : public GameObject{
         explicit StaticObject(const Position pos) : _hitbox(nullptr), _sprite(nullptr), _pos(pos) {
             const sf::Texture texture = sf::Texture(sf::Vector2u{0,0});
             _sprite = new sf::Sprite(texture);
+            _sprite->setPosition({_pos.x, _pos.y});
         };
-        StaticObject(const Position pos, const sf::Sprite& sprite) : _hitbox(nullptr), _sprite(&sprite), _pos(pos) {};
+        StaticObject(const Position pos, sf::Sprite& sprite) : _hitbox(nullptr), _sprite(&sprite), _pos(pos) {
+            _sprite->setPosition({_pos.x, _pos.y});
+        };
 
         bool initHitbox();
         bool initHitbox(const Hitbox& hitbox);
@@ -27,11 +30,11 @@ class StaticObject : public GameObject{
         [[nodiscard]] Position getPos() const override;
         [[nodiscard]] const Position* getPosPtr() const override;
         [[nodiscard]] Hitbox getHitbox() const;
-        [[nodiscard]] const sf::Sprite* getSprite() const;
+        [[nodiscard]] const sf::Sprite* getSprite() const override;
 
     private:
         const Hitbox* _hitbox;
-        const sf::Sprite *_sprite;
+        sf::Sprite* _sprite;
         Position _pos;
 };
 
