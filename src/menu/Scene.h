@@ -71,7 +71,7 @@ namespace UI {
 			 */
 		    unsigned int getHighestUIZ() const;
 
-    	private:
+		private:
 			Scene* _sender;
 		    unsigned int _highestObjZ = 0;
 		    unsigned int _highestUIZ = 0;
