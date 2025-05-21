@@ -44,6 +44,18 @@ int main() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 			window.close();
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+			wood.move(Position(0, -0.5));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+			wood.move(Position(-0.5, 0));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+			wood.move(Position(0, 0.5));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+			wood.move(Position(0.5, 0));
+		}
 
 		background.move(Position(-0.5, 0));
 	}
