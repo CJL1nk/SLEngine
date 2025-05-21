@@ -10,6 +10,8 @@
 #include "menu/Scene.h"
 #include "menu/StaticTexture.h"
 
+#include <SFML/Audio.hpp>
+
 int main() {
 
 	// Create object
@@ -35,6 +37,11 @@ int main() {
 	// Create window and set its scene, scene can also be passed as another arg to constructor
 	UI::GameWindow window = UI::GameWindow(480, 480, 60, "New Window!");
 	window.setScene(scene);
+
+	// Some nice music to play
+	sf::SoundBuffer buffer("../audios/dark souls intro thing.mp3");
+	sf::Sound sound(buffer);
+	sound.play();
 
 	while (window.isOpen()) {
 
