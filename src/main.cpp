@@ -11,8 +11,6 @@
 
 int main() {
 
-	int frame = 0;
-
 	// Create object
 	sf::Texture texture("textures/landscape.png", false, sf::IntRect({0, 0}, {0, 0}));
 	sf::Sprite spr = sf::Sprite(texture);
