@@ -42,12 +42,16 @@ bool StaticObject::initHitbox(const float width, const float height) {
 void StaticObject::move(const float x, const float y) {
     this->_pos.x += x;
     this->_pos.y += y;
+
+    this->_sprite->setPosition({this->_pos.x, this->_pos.y});
 }
 
 void StaticObject::move(const Position pos) {
     this->_pos.x += pos.x;
     this->_pos.y += pos.y;
     this->_pos.rotation += pos.rotation;
+
+    this->_sprite->setPosition({this->_pos.x, this->_pos.y});
 }
 
 void StaticObject::rotate(const float degrees) {
@@ -73,6 +77,8 @@ const sf::Sprite* StaticObject::getSprite() const {
 
 void StaticObject::setPos(const Position &pos) {
     this->_pos = pos;
+
+    this->_sprite->setPosition({this->_pos.x, this->_pos.y});
 }
 
 void StaticObject::setRotation(const float degrees) {

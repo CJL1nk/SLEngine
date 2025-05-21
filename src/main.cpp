@@ -45,7 +45,7 @@ int main() {
 			window.close();
 		}
 
-		spr.move(sf::Vector2f(-0.5, 0));
+		background.move(Position(-0.5, 0));
 	}
 
 	return 0;
