@@ -4,6 +4,8 @@
 
 #include "GameWindow.h"
 
+#include <iostream>
+
 namespace UI
 {
 
@@ -32,10 +34,17 @@ namespace UI
     }
 
     void GameWindow::drawScene() {
+
+        std::unordered_map<unsigned int, std::vector<GameObject*>> objectMap = this->_scene->getObjectMap();
+
         this->_window.clear(sf::Color::Black);
-        for (const GameObject* obj : this->_scene->getObjects()) {
-            this->_window.draw(*obj->getSprite());
+
+        for (int i = 0; i <= this->_scene->getHighestZ(); i++) {
+            for (int j = 0; j < objectMap[i].size(); j++) {
+                this->_window.draw(*objectMap[i][j]->getSprite());
+            }
         }
+
         this->_window.display();
     }
 

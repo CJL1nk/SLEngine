@@ -12,7 +12,7 @@ namespace UI {
 
 	/**
 	* The Scene class forms a screen based on given objects, buttons, and other UI elements.
-	* Each scene can transition from one to another and has the ability to transition back to its "sender" scene
+	* Each scene knows its "sender" scene
 	*/
 	class Scene {
 
@@ -23,12 +23,16 @@ namespace UI {
 
             void transition(Scene* nextScene);
 
-			std::vector<GameObject*> getObjects();
+			std::vector<GameObject*> getObjects() const;
+			std::unordered_map<unsigned int, std::vector<GameObject*>> getObjectMap() const;
+		    unsigned int getHighestZ() const;
 
     	private:
 			Scene* _sender;
+		    unsigned int _highestZ = 0;
 
 			std::vector<GameObject*> _objects;
+			std::unordered_map<unsigned int, std::vector<GameObject*>> _objectMap;
 	};
 }
 #endif //SCENE_H
