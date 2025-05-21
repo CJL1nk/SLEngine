@@ -36,6 +36,54 @@ namespace UI {
         return true;
     }
 
+    bool Scene::removeObject(const GameObject& object) {
+
+        bool objectExists = false;
+
+        // Remove from all objects
+        for (int i = 0; i < this->_objects.size(); i++) {
+            if (this->_objects[i] == &object) {
+                objectExists = true;
+                this->_objects.erase(std::remove(this->_objects.begin(), this->_objects.end(), &object));
+            }
+        }
+
+        // Remove from Z order map
+        if (objectExists) {
+            for (int i = 0; i < this->_objectMap[object.getPos().zOrder].size(); i++) {
+                if (this->_objectMap[object.getPos().zOrder][i] == &object) {
+                    this->_objectMap[object.getPos().zOrder].erase(std::remove(this->_objects.begin(), this->_objects.end(), &object));
+                }
+            }
+        }
+
+        return objectExists;
+    }
+
+    bool Scene::removeUIObject(const UIObject& uiObject) {
+
+        bool objectExists = false;
+
+        // Remove from all objects
+        for (int i = 0; i < this->_uiObjects.size(); i++) {
+            if (this->_uiObjects[i] == &uiObject) {
+                objectExists = true;
+                this->_uiObjects.erase(std::remove(this->_uiObjects.begin(), this->_uiObjects.end(), &uiObject));
+            }
+        }
+
+        // Remove from Z order map
+        if (objectExists) {
+            for (int i = 0; i < this->_uiObjectMap[uiObject.getPos().zOrder].size(); i++) {
+                if (this->_uiObjectMap[uiObject.getPos().zOrder][i] == &uiObject) {
+                    this->_uiObjectMap[uiObject.getPos().zOrder].erase(std::remove(this->_uiObjects.begin(), this->_uiObjects.end(), &uiObject));
+                }
+            }
+        }
+
+        return objectExists;
+    }
+
     std::vector<GameObject*> Scene::getObjects() const {
         return this->_objects;
     }

@@ -74,6 +74,7 @@ int main() {
 
 		if (wood.collidesWith(wood2)) {
 			spr3.setColor(sf::Color::Blue);
+			scene.removeObject(wood2);
 		} else {
 			spr3.setColor(sf::Color::Red);
 		}

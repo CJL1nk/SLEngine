@@ -37,6 +37,19 @@ namespace UI {
 			bool addUIObject(UIObject& uiObject);
 
 			/**
+			 * Removes some game object from the scene, if it exists
+			 * @param object object to remove
+			 * @return True if successful, false otherwise
+			 */
+			bool removeObject(const GameObject& object);
+			/**
+			 * Removes some UI object from the scene, if it exists
+			 * @param uiObject object to remove
+			 * @return True if successful, false otherwise
+			 */
+			bool removeUIObject(const UIObject& uiObject);
+
+			/**
 			 * Transitions the window from one scene to another
 			 * @param nextScene Scene to transition to
 			 */
