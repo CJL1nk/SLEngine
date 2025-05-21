@@ -55,13 +55,13 @@ namespace UI {
 			 * @param object Object to test
 			 * @return True if it exists, false otherwise
 			 */
-			bool objectExists(const GameObject& object) const;
+			bool objectExists(const GameObject& object);
 			/**
 			 * Returns whether a UI object exists in a scene
 			 * @param uiObject UI object to test
 			 * @return True if it exists, false otherwise
 			 */
-		    bool uiObjectExists(const UIObject& uiObject) const;
+		    bool uiObjectExists(const UIObject& uiObject);
 
 			/**
 			 * Transitions the window from one scene to another

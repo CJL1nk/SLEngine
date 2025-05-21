@@ -74,11 +74,11 @@ namespace UI {
         return found;
     }
 
-    bool Scene::objectExists(const GameObject &object) const {
+    bool Scene::objectExists(const GameObject &object) {
 
         // Get vector from map at given objects Z order, likely leading to fewer objects needing to be looped over
-        for (int i = 0; i < this->_objectMap.at(object.getPos().zOrder).size(); i++) {
-            if (this->_objectMap.at(object.getPos().zOrder)[i] == &object) {
+        for (int i = 0; i < this->_objectMap[object.getPos().zOrder].size(); i++) {
+            if (this->_objectMap[object.getPos().zOrder][i] == &object) {
                 return true;
             }
         }
@@ -86,11 +86,11 @@ namespace UI {
         return false;
     }
 
-    bool Scene::uiObjectExists(const UIObject &uiObject) const {
+    bool Scene::uiObjectExists(const UIObject &uiObject) {
 
         // Get vector from map at given objects Z order, likely leading to fewer objects needing to be looped over
-        for (int i = 0; i < this->_uiObjectMap.at(uiObject.getPos().zOrder).size(); i++) {
-            if (this->_uiObjectMap.at(uiObject.getPos().zOrder)[i] == &uiObject) {
+        for (int i = 0; i < this->_uiObjectMap[uiObject.getPos().zOrder].size(); i++) {
+            if (this->_uiObjectMap[uiObject.getPos().zOrder][i] == &uiObject) {
                 return true;
             }
         }
