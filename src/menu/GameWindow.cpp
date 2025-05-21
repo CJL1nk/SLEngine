@@ -10,11 +10,13 @@ namespace UI
     GameWindow::GameWindow() {
         this->_window = sf::RenderWindow(sf::VideoMode({1280, 720}), "Window");
         this->_window.setFramerateLimit(60);
+        this->_scene = new UI::Scene();
     }
 
     GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title) {
         this->_window = sf::RenderWindow(sf::VideoMode({width, height}), title);
         this->_window.setFramerateLimit(fps);
+        this->_scene = new UI::Scene();
     }
 
     GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title, Scene &scene) {

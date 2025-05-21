@@ -22,7 +22,7 @@ int main() {
 	UI::Scene scene = UI::Scene();
 	scene.addObject(woodObj);
 
-	// Create window and set its scene
+	// Create window and set its scene, scene can also be passed as another arg to constructor
 	UI::GameWindow window = UI::GameWindow(1920, 1080, 60, "New Window!");
 	window.setScene(scene);
 
