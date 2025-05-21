@@ -11,19 +11,19 @@
 class Hitbox {
 
     public:
-        Hitbox(GameObject* object, float width, float height) : _obj(object), _width(width), _height(height) {
+        Hitbox(GameObject* object, const float width, const float height) : _width(width), _height(height), _obj(object) {
             this->_pos = object->getPosPtr();
         };
 
-        Position getPos() {
+        [[nodiscard]] Position getPos() const {
             return *this->_pos;
         }
 
-        float getWidth() {
+        [[nodiscard]] float getWidth() const {
             return this->_width;
         }
 
-        float getHeight() {
+        [[nodiscard]] float getHeight() const {
             return this->_height;
         }
 
