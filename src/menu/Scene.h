@@ -6,6 +6,7 @@
 #define SCENE_H
 
 #include "../includes.h"
+#include "../objects/GameObject.h"
 
 namespace UI {
 
@@ -18,11 +19,16 @@ namespace UI {
 		public:
             Scene();
 
-            void Transition(Scene* nextScene);
+			bool addObject(GameObject& object);
+
+            void transition(Scene* nextScene);
+
+			std::vector<GameObject*> getObjects();
 
     	private:
-			Scene* sender;
-            Position pos;
+			Scene* _sender;
+
+			std::vector<GameObject*> _objects;
 	};
 }
 #endif //SCENE_H

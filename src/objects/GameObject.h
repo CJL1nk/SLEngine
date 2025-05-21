@@ -16,6 +16,7 @@ class GameObject {
     public:
         [[nodiscard]] virtual Position getPos() const = 0;
         [[nodiscard]] virtual const Position* getPosPtr() const = 0; // For use by hitbox class or any other attached object
+        [[nodiscard]] virtual const sf::Sprite* getSprite() const = 0;
 };
 
 

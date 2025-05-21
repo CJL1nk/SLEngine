@@ -14,6 +14,8 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(SLEngine src/main.cpp
                         src/objects/StaticObject.cpp
+                        src/menu/GameWindow.cpp
+                        src/menu/Scene.cpp
 )
 
 target_link_libraries(SLEngine PRIVATE SFML::Graphics SFML::Window SFML::Audio)

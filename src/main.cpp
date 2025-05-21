@@ -6,33 +6,28 @@
 
 #include "includes.h"
 #include "objects/StaticObject.h"
+#include "menu/GameWindow.h"
+#include "menu/Scene.h"
 
 int main() {
 
-	sf::Vector2u windowSize = sf::Vector2u(1920, 1080);
-	sf::RenderWindow window(sf::VideoMode(windowSize), "Window");
-	window.setFramerateLimit(60);
+	int frame = 0;
 
-	sf::Texture texture("textures/wood_1.jpg", false, sf::IntRect({0, 0}, {128, 128}));
-	sf::Sprite sprite = sf::Sprite(texture);
+	// Create object
+	sf::Texture texture = sf::Texture(sf::Texture("textures/wood_1.jpg"));
+	sf::Sprite spr = sf::Sprite(texture);
+	StaticObject woodObj = StaticObject(Position(400, 500, 0), spr);
 
-	StaticObject obj = StaticObject(Position(100.0f, 100.0f, 0), sprite);
-	obj.initHitbox();
+	// Create scene and add our object
+	UI::Scene scene = UI::Scene();
+	scene.addObject(woodObj);
 
-	std::cout << obj.getHitbox().getWidth() << std::endl
-	<< obj.getHitbox().getHeight() << std::endl;
+	// Create window and set its scene
+	UI::GameWindow window = UI::GameWindow(1920, 1080, 60, "New Window!");
+	window.setScene(scene);
 
 	while (window.isOpen()) {
-
-		while (const std::optional event = window.pollEvent()) {
-			// Request for closing the window
-			if (event->is<sf::Event::Closed>()) window.close();
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
-		}
-
-		window.clear(sf::Color::Black);
-		window.draw(sprite);
-		window.display();
+		window.drawScene();
 	}
 
 	return 0;

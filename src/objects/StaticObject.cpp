@@ -24,14 +24,19 @@ bool StaticObject::initHitbox(const Hitbox& hitbox) {
     return true;
 }
 
-[[nodiscard]] Position StaticObject::getPos() const {
+Position StaticObject::getPos() const {
     return this->_pos;
 }
 
-[[nodiscard]] const Position* StaticObject::getPosPtr() const {
+const Position* StaticObject::getPosPtr() const {
     return &this->_pos;
 }
 
 Hitbox StaticObject::getHitbox() const {
     return *this->_hitbox;
 };
+
+const sf::Sprite* StaticObject::getSprite() const {
+    return this->_sprite;
+}
+
