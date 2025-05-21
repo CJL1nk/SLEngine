@@ -41,6 +41,7 @@ int main() {
 	// Some nice music to play
 	sf::SoundBuffer buffer("../audios/dark souls intro thing.mp3");
 	sf::Sound sound(buffer);
+	sound.setLooping(true);
 	sound.play();
 
 	while (window.isOpen()) {
