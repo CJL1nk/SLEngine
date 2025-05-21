@@ -8,7 +8,7 @@
 #include "Hitbox.h"
 #include "../includes.h"
 
-class Hitbox;
+class Hitbox; // Forward declaration to avoid circular import linker screaming and crying stupid asshole
 
 /**
 * The GameObject class is a wrapper class for various object-type classes
