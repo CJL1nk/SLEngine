@@ -2,8 +2,6 @@
 // Created by CJ on 5/20/2025.
 //
 
-#include <iostream>
-
 #include "includes.h"
 #include "objects/StaticObject.h"
 #include "menu/GameWindow.h"

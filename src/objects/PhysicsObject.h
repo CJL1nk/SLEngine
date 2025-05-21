@@ -21,7 +21,7 @@ class PhysicsObject : public GameObject {
         [[nodiscard]] Position getPos() const override;
         [[nodiscard]] const Position* getPosPtr() const override;
 
-        [[nodiscard]] Hitbox getHitbox() const;
+        [[nodiscard]] const Hitbox* getHitbox() const override;
 
     private:
         const Hitbox* _hitbox;

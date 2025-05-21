@@ -14,6 +14,7 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(SLEngine src/main.cpp
                         src/objects/StaticObject.cpp
+                        src/objects/PhysicsObject.cpp
                         src/objects/Hitbox.cpp
                         src/menu/GameWindow.cpp
                         src/menu/Scene.cpp

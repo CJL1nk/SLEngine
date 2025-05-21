@@ -18,6 +18,6 @@ const Position* PhysicsObject::getPosPtr() const {
     return &this->_pos;
 }
 
-Hitbox PhysicsObject::getHitbox() const {
-    return *this->_hitbox;
+const Hitbox* PhysicsObject::getHitbox() const {
+    return this->_hitbox;
 };
