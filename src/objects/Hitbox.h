@@ -26,7 +26,7 @@ class Hitbox {
         Hitbox(GameObject* object, float width, float height);
 
         /**
-         * Returns the position of referenced Hitbox object
+         * Returns the position of referenced Hitbox object, WITH offset for center
          * @return Position of referenced Hitbox object
          */
         [[nodiscard]] Position getPos() const;

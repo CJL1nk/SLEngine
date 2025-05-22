@@ -69,11 +69,13 @@ void StaticObject::rotate(const float degrees) {
 
 bool StaticObject::collidesWith(const GameObject &other) const {
 
-    if (this->getHitbox()->getPos().x < other.getHitbox()->getPos().x + other.getHitbox()->getWidth() &&
-    ts->getHitbox()->getPos().x + this->getHitbox()->getWidth() > other.getHitbox()->getPos().x &&
-    this->getHitbox()->getPos().y < other.getHitbox()->getPos().y + other.getHitbox()->getHeight() &&
-    this->getHitbox()->getPos().y + this->getHitbox()->getHeight() > other.getHitbox()->getPos().y) {
-        return true;
+    if (this-> _hitbox != nullptr && other.getHitbox() != nullptr) {
+        if (this->getHitbox()->getPos().x < other.getHitbox()->getPos().x + other.getHitbox()->getWidth() &&
+        ts->getHitbox()->getPos().x + this->getHitbox()->getWidth() > other.getHitbox()->getPos().x &&
+        this->getHitbox()->getPos().y < other.getHitbox()->getPos().y + other.getHitbox()->getHeight() &&
+        this->getHitbox()->getPos().y + this->getHitbox()->getHeight() > other.getHitbox()->getPos().y) {
+            return true;
+        }
     }
     return false;
 }

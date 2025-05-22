@@ -9,7 +9,12 @@ Hitbox::Hitbox(GameObject* object, const float width, const float height) : _wid
 }
 
 Position Hitbox::getPos() const {
-    return *this->_pos;
+    Position objPos = *_pos;
+
+    objPos.x -= _width / 2.0f;
+    objPos.y -= _height / 2.0f;
+
+    return objPos; // Return new position object with offset to account for objects center
 }
 
 float Hitbox::getWidth() const {
