@@ -16,13 +16,13 @@ StaticObject::StaticObject(const Position pos) : _hitbox(nullptr), _sprite(nullp
     const sf::Texture texture = sf::Texture(sf::Vector2u{0,0});
     this->_sprite = new sf::Sprite(texture);
     this->_sprite->setPosition({this->_pos.x, this->_pos.y});
-    sf::FloatRect bounds = this->_sprite->getLocalBounds();
+    const sf::FloatRect bounds = this->_sprite->getLocalBounds();
     this->_sprite->setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f}); // Set center of object to center of sprite, NOT corner
 };
 
 StaticObject::StaticObject(const Position pos, sf::Sprite& sprite) : _hitbox(nullptr), _sprite(&sprite), _pos(pos) {
     this->_sprite->setPosition({this->_pos.x, this->_pos.y});
-    sf::FloatRect bounds = this->_sprite->getLocalBounds();
+    const sf::FloatRect bounds = this->_sprite->getLocalBounds();
     this->_sprite->setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f}); // Set center of object to center of sprite, NOT corner
 };
 

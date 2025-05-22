@@ -10,7 +10,7 @@ namespace UI {
 
     Button::Button(const Position pos, sf::Sprite& sprite) : _onPressFunc(nullptr), _onReleaseFunc(nullptr), _onHoverFunc(nullptr), _offHoverFunc(nullptr), _pos(pos), _sprite(&sprite) {
         this->_sprite->setPosition({this->_pos.x, this->_pos.y});
-        sf::FloatRect bounds = this->_sprite->getLocalBounds();
+        const sf::FloatRect bounds = this->_sprite->getLocalBounds();
         this->_sprite->setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f}); // Set center of object to center of sprite, NOT corner
     }
 
