@@ -19,3 +19,11 @@ float Hitbox::getWidth() const {
 float Hitbox::getHeight() const {
     return this->_height;
 }
+
+void Hitbox::setWidth(const float width) {
+    this->_width = width;
+}
+
+void Hitbox::setHeight(const float height) {
+    this->_height = height;
+}

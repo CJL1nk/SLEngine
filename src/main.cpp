@@ -14,43 +14,82 @@
 
 int main() {
 
-	// Create object
-	sf::Texture texture("../textures/landscape.png", false, sf::IntRect({0, 0}, {0, 0}));
-	sf::Sprite spr = sf::Sprite(texture);
-	StaticObject background = StaticObject(Position(500, 350, 0), spr);
-
-	sf::Texture texture2("../textures/wood_1.jpg", false, sf::IntRect({0, 0}, {64, 64}));
-	sf::Sprite spr2 = sf::Sprite(texture2);
-	StaticObject wood = StaticObject(Position(0, 0, 1), spr2);
-	wood.initHitbox();
-
-	sf::Texture texture2_1("../textures/wood_1.jpg", false, sf::IntRect({0, 0}, {64, 64}));
-	sf::Sprite spr2_1 = sf::Sprite(texture2_1);
-	StaticObject wood2 = StaticObject(Position(300, 300, 1), spr2_1);
-	wood2.initHitbox();
-
-	// Button initialization
-	sf::Texture texture3("../textures/button.png", false, sf::IntRect({0, 0}, {516, 516}));
-	sf::Sprite spr3 = sf::Sprite(texture3);
-	spr3.setScale(sf::Vector2f(0.2f, 0.2f));
-	UI::Button btn = UI::Button(Position(120, 120, 0), spr3);
-
-	btn.setOnPress([&spr3]() {spr3.setColor(sf::Color::Cyan);});
-	btn.setOnRelease([&spr3]() {spr3.setColor(sf::Color::White);});
-	btn.setOnHover([&spr3]() {spr3.setScale(sf::Vector2f(0.22f, 0.22f));});
-	btn.setOffHover([&spr3]() {spr3.setScale(sf::Vector2f(0.2f, 0.2f));});
-
-	// Create scene and add our object
+	// Initialize scene
 	UI::Scene scene = UI::Scene();
-	scene.addObject(background);
-	scene.addObject(wood);
-	scene.addObject(wood2);
-	scene.addObject(wood2); // Should NOT add to scene because it's already there
-	scene.addUIObject(btn);
 
 	// Create window and set its scene, scene can also be passed as another arg to constructor
 	UI::GameWindow window = UI::GameWindow(480, 480, 60, "New Window!");
 	window.setScene(scene);
+
+	// Create some objects
+	sf::Texture appleTexture("../textures/apple.png", false, sf::IntRect({0, 0}, {0, 0}));
+	sf::Sprite appleSprite(appleTexture);
+	StaticObject apple(Position(200, 240, 1), appleSprite);
+	apple.initHitbox();
+	apple.setScale(0.01f, 0.01f);
+	scene.addObject(apple);
+
+	sf::Texture pineappleTexture("../textures/pineapple.png", false, sf::IntRect({0, 0}, {0, 0}));
+	sf::Sprite pineappleSprite(pineappleTexture);
+	StaticObject pineapple(Position(280, 240, 2), pineappleSprite);
+	pineapple.initHitbox();
+	pineapple.setScale(0.02f, 0.02f);
+	scene.addObject(pineapple);
+
+	sf::Texture texture("../textures/landscape.png", false, sf::IntRect({0, 0}, {0, 0}));
+	sf::Sprite spr = sf::Sprite(texture);
+	StaticObject background = StaticObject(Position(670, 350, 0), spr);
+	scene.addObject(background);
+
+	// Create our Buttons
+	sf::Texture arrowTexture("../textures/arrowBtn.png", false, sf::IntRect({0, 0}, {0, 0}));
+
+	sf::Sprite upArrowSprite(arrowTexture);
+	upArrowSprite.setScale({0.11f, 0.11f});
+	UI::Button upArrowBtn(Position(400, 380), upArrowSprite);
+	scene.addUIObject(upArrowBtn);
+
+	upArrowBtn.setOnPress([&upArrowSprite, &pineapple]() {
+		upArrowSprite.setColor(sf::Color::Green);
+		pineapple.move(0.f, -5.0f);
+	});
+	upArrowBtn.setOnRelease([&upArrowSprite]() {upArrowSprite.setColor(sf::Color::White);});
+
+	sf::Sprite downArrowSprite(arrowTexture);
+	downArrowSprite.setRotation(sf::degrees(180.0f));
+	downArrowSprite.setScale({0.11f, 0.11f});
+	UI::Button downArrowBtn(Position(400, 440), downArrowSprite);
+	scene.addUIObject(downArrowBtn);
+
+	downArrowBtn.setOnPress([&downArrowSprite, &pineapple]() {
+		downArrowSprite.setColor(sf::Color::Green);
+		pineapple.move(0.f, 5.0f);
+	});
+	downArrowBtn.setOnRelease([&downArrowSprite]() {downArrowSprite.setColor(sf::Color::White);});
+
+	sf::Sprite leftArrowSprite(arrowTexture);
+	leftArrowSprite.setRotation(sf::degrees(-90.0f));
+	leftArrowSprite.setScale({0.11f, 0.11f});
+	UI::Button leftArrowBtn(Position(350, 410), leftArrowSprite);
+	scene.addUIObject(leftArrowBtn);
+
+	leftArrowBtn.setOnPress([&leftArrowSprite, &pineapple]() {
+		leftArrowSprite.setColor(sf::Color::Green);
+		pineapple.move(-5.f, -0.0f);
+	});
+	leftArrowBtn.setOnRelease([&leftArrowSprite]() {leftArrowSprite.setColor(sf::Color::White);});
+
+	sf::Sprite rightArrowSprite(arrowTexture);
+	rightArrowSprite.setRotation(sf::degrees(90.0f));
+	rightArrowSprite.setScale({0.11f, 0.11f});
+	UI::Button rightArrowBtn(Position(450, 410), rightArrowSprite);
+	scene.addUIObject(rightArrowBtn);
+
+	rightArrowBtn.setOnPress([&rightArrowSprite, &pineapple]() {
+		rightArrowSprite.setColor(sf::Color::Green);
+		pineapple.move(5.f, -0.0f);
+	});
+	rightArrowBtn.setOnRelease([&rightArrowSprite]() {rightArrowSprite.setColor(sf::Color::White);});
 
 	// Some nice music to play
 	sf::SoundBuffer buffer("../audios/Crateman.mp3");
@@ -67,25 +106,24 @@ int main() {
 			window.close();
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-			wood.move(Position(0, -1.5));
+			apple.move(Position(0, -1.5));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-			wood.move(Position(-1.5, 0));
+			apple.move(Position(-1.5, 0));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-			wood.move(Position(0, 1.5));
+			apple.move(Position(0, 1.5));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-			wood.move(Position(1.5, 0));
+			apple.move(Position(1.5, 0));
 		}
 
 		background.move(Position(-0.5, 0));
-		wood2.rotate(0.5);
 
-		if (wood.collidesWith(wood2)) {
-			spr3.setColor(sf::Color::Blue);
-			scene.removeObject(wood2);
+		if (apple.collidesWith(pineapple)) {
+			appleSprite.setColor(sf::Color::Blue);
 		} else {
+			appleSprite.setColor(sf::Color::White);
 		}
 	}
 

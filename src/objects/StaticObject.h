@@ -85,7 +85,7 @@ class StaticObject : public GameObject{
          * Returns a pointer to the hitbox of referenced object
          * @return Pointer to the hitbox of referenced object
          */
-        [[nodiscard]] const Hitbox* getHitbox() const override;
+        [[nodiscard]] Hitbox* getHitbox() const override;
         /**
          * Returns a pointer to the sprite of referenced object
          * @return pPointer to the sprite of referenced object
@@ -97,15 +97,21 @@ class StaticObject : public GameObject{
          * @param pos Position to set
          */
         void setPos(const Position& pos);
-
         /**
          * Sets the rotation of referenced object
          * @param degrees Rotation degrees to set
          */
         void setRotation(float degrees);
 
+        /**
+         * Sets the x and y scale of an object
+         * @param xScale X scale factor
+         * @param yScale Y scale factor
+         */
+        void setScale(float xScale, float yScale);
+
     private:
-        const Hitbox* _hitbox;
+        Hitbox* _hitbox;
         sf::Sprite* _sprite;
         Position _pos;
 };

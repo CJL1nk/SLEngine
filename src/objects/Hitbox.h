@@ -41,6 +41,17 @@ class Hitbox {
          */
         [[nodiscard]] float getHeight() const;
 
+        /**
+         * Sets the width of referenced hitbox
+         * @param width Width to set
+         */
+        void setWidth(float width);
+        /**
+         * Sets the height of referenced hitbox
+         * @param height Height to set
+         */
+        void setHeight(float height);
+
 
     private:
         float _width, _height;

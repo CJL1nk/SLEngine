@@ -87,7 +87,7 @@ const Position* StaticObject::getPosPtr() const {
     return &this->_pos;
 }
 
-const Hitbox* StaticObject::getHitbox() const {
+Hitbox* StaticObject::getHitbox() const {
     return this->_hitbox;
 };
 
@@ -106,4 +106,14 @@ void StaticObject::setRotation(const float degrees) {
 
     this->_sprite->setRotation(sf::degrees(this->_pos.rotation));
 }
+
+void StaticObject::setScale(float xScale, float yScale) {
+
+    this->_sprite->setScale({xScale, yScale});
+    if (this->_hitbox != nullptr) {
+        this->_hitbox->setWidth(this->_hitbox->getWidth() * xScale);
+        this->_hitbox->setHeight(this->_hitbox->getHeight() * yScale);
+    }
+}
+
 
