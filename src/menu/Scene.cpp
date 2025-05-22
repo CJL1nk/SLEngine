@@ -40,6 +40,10 @@ namespace UI {
 
             _uiObjectMap[uiObject.getPos().zOrder].push_back(&uiObject); // Add to map
 
+            if (auto* button = dynamic_cast<Button*>(&uiObject)) { // If added object was a button, add it to special button vector (for detecting mouse presses and all that)
+                this->_buttons.push_back(button);
+            }
+
             return true;
         }
 
@@ -100,6 +104,14 @@ namespace UI {
 
     std::vector<GameObject*> Scene::getObjects() const {
         return this->_objects;
+    }
+
+    std::vector<UIObject*> Scene::getUIObjects() const {
+        return this->_uiObjects;
+    }
+
+    std::vector<Button*> Scene::getButtons() const {
+        return this->_buttons;
     }
 
     unsigned int Scene::getHighestObjZ() const {

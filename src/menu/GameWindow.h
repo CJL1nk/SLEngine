@@ -63,9 +63,9 @@ namespace UI {
              */
             void resize(unsigned int x, unsigned int y, unsigned int fps);
             /**
-             * Polls all events in window, PLEASE CALL THIS FIRST IN MAIN LOOP!!!
+             * Polls and updates all events in window, PLEASE CALL THIS FIRST IN MAIN LOOP!!!
              */
-            void pollEvents();
+            void update();
             /**
              * Closes the game window
              */

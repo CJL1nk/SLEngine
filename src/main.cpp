@@ -2,6 +2,8 @@
 // Created by CJ on 5/20/2025.
 //
 
+#include <iostream>
+
 #include "includes.h"
 #include "objects/StaticObject.h"
 #include "menu/GameWindow.h"
@@ -27,10 +29,11 @@ int main() {
 	StaticObject wood2 = StaticObject(Position(300, 300, 1), spr2_1);
 	wood2.initHitbox();
 
+	// Button initialization
 	sf::Texture texture3("../textures/button.png", false, sf::IntRect({0, 0}, {516, 516}));
 	sf::Sprite spr3 = sf::Sprite(texture3);
-	spr3.setScale(sf::Vector2f(0.2, 0.2));
-	UI::StaticTexture btn = UI::StaticTexture(Position(120, 120, 0), spr3);
+	auto buttonFunc = []() {std::cout << "BUTTON CLICKED!!" << std::endl;};
+	UI::Button btn = UI::Button(Position(120, 120, 0), spr3, buttonFunc);
 
 	// Create scene and add our object
 	UI::Scene scene = UI::Scene();
@@ -52,7 +55,7 @@ int main() {
 
 	while (window.isOpen()) {
 
-		window.pollEvents();
+		window.update();
 		window.drawScene();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {

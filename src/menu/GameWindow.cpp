@@ -57,10 +57,22 @@ namespace UI
         this->_window.display();
     }
 
-    void GameWindow::pollEvents() {
+    void GameWindow::update() {
 
         while (const std::optional event = this->_window.pollEvent()) { // Grab event object
             if (event->is<sf::Event::Closed>()) this->_window.close(); // If they pressed X, signal for close
+        }
+
+        // Check if any buttons were pressed and call them
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+
+            const std::vector<Button*> buttons = this->_scene->getButtons();
+
+            for (int i = 0; i < buttons.size(); i++) {
+                if (buttons[i]->isHovered(sf::Mouse::getPosition(this->_window).x, sf::Mouse::getPosition(this->_window).y)) {
+                    buttons[i]->press();
+                }
+            }
         }
     }
 

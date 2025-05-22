@@ -5,6 +5,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "Button.h"
 #include "../includes.h"
 #include "../objects/GameObject.h"
 #include "UIObject.h"
@@ -75,6 +76,16 @@ namespace UI {
 			 */
 			std::vector<GameObject*> getObjects() const;
 			/**
+			 * Returns a vector containing pointers to all UI objects in referenced scene
+			 * @return Vector containing pointers to every UI object in referenced scene
+			 */
+			std::vector<UIObject*> getUIObjects() const;
+			/**
+			 * Returns a vector containing pointers to all UI buttons in a scene
+			 * @return Vector containing pointers to all UI buttons in a scene
+			 */
+			std::vector<Button*> getButtons() const;
+			/**
 			 * Returns a map containing all Game Objects in referenced scene, where the KEY is the z order
 			 * and the VALUE is a vector containing all objects with that z order
 			 * @return Map containing all Game Objects in referenced scene
@@ -105,6 +116,7 @@ namespace UI {
 
 			std::vector<GameObject*> _objects;
 			std::vector<UIObject*> _uiObjects;
+			std::vector<Button*> _buttons;
 
 			std::unordered_map<unsigned int, std::vector<GameObject*>> _objectMap;
 			std::unordered_map<unsigned int, std::vector<UIObject*>> _uiObjectMap;
