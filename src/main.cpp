@@ -54,6 +54,8 @@ int main() {
 		pineapple.move(0.f, -5.0f);
 	});
 	upArrowBtn.setOnRelease([&upArrowSprite]() {upArrowSprite.setColor(sf::Color::White);});
+	upArrowBtn.setOnHover([&upArrowSprite]() {upArrowSprite.setScale({0.12f, 0.12f});});
+	upArrowBtn.setOffHover([&upArrowSprite]() {upArrowSprite.setScale({0.11f, 0.11f});});
 
 	sf::Sprite downArrowSprite(arrowTexture);
 	downArrowSprite.setRotation(sf::degrees(180.0f));
@@ -66,6 +68,8 @@ int main() {
 		pineapple.move(0.f, 5.0f);
 	});
 	downArrowBtn.setOnRelease([&downArrowSprite]() {downArrowSprite.setColor(sf::Color::White);});
+	downArrowBtn.setOnHover([&downArrowSprite]() {downArrowSprite.setScale({0.12f, 0.12f});});
+	downArrowBtn.setOffHover([&downArrowSprite]() {downArrowSprite.setScale({0.11f, 0.11f});});
 
 	sf::Sprite leftArrowSprite(arrowTexture);
 	leftArrowSprite.setRotation(sf::degrees(-90.0f));
@@ -78,6 +82,8 @@ int main() {
 		pineapple.move(-5.f, -0.0f);
 	});
 	leftArrowBtn.setOnRelease([&leftArrowSprite]() {leftArrowSprite.setColor(sf::Color::White);});
+	leftArrowBtn.setOnHover([&leftArrowSprite]() {leftArrowSprite.setScale({0.12f, 0.12f});});
+	leftArrowBtn.setOffHover([&leftArrowSprite]() {leftArrowSprite.setScale({0.11f, 0.11f});});
 
 	sf::Sprite rightArrowSprite(arrowTexture);
 	rightArrowSprite.setRotation(sf::degrees(90.0f));
@@ -90,6 +96,8 @@ int main() {
 		pineapple.move(5.f, -0.0f);
 	});
 	rightArrowBtn.setOnRelease([&rightArrowSprite]() {rightArrowSprite.setColor(sf::Color::White);});
+	rightArrowBtn.setOnHover([&rightArrowSprite]() {rightArrowSprite.setScale({0.12f, 0.12f});});
+	rightArrowBtn.setOffHover([&rightArrowSprite]() {rightArrowSprite.setScale({0.11f, 0.11f});});
 
 	// Some nice music to play
 	sf::SoundBuffer buffer("../audios/Crateman.mp3");
