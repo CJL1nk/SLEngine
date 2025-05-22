@@ -19,6 +19,7 @@ add_executable(SLEngine src/main.cpp
                         src/menu/GameWindow.cpp
                         src/menu/Scene.cpp
                         src/menu/StaticTexture.cpp
+                        src/menu/Button.cpp
 )
 
 target_link_libraries(SLEngine PRIVATE SFML::Graphics SFML::Window SFML::Audio)

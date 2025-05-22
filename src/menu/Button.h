@@ -11,17 +11,27 @@
 namespace UI {
 
 	/**
-	* The Button class creates a clickable button with the ability to call a user specififed function callback
+	* The Button class creates a clickable button with the ability to call some user specified function
 	*/
 	class Button : public UIObject {
 
-	public:
-		Button();
+		public:
+			Button();
+			Button(Position pos, sf::Sprite& sprite);
+			template <typename Func, typename... Args>
+			Button(Position pos, sf::Sprite& sprite, Func&& f, Args&&... args);
 
-    private:
-        void* callback;
-		Position pos;
-	};
+			template <typename Func, typename... Args>
+			void setPress(Func&& f, Args&&... args);
+
+	        void press();
+
+            void onHover();
+
+	    private:
+			std::function<void()> _function;
+			Position _pos;
+		};
 }
 
 #endif //BUTTON_H
