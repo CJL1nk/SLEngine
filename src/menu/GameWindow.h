@@ -79,6 +79,9 @@ namespace UI {
         private:
             Scene* _scene;
             sf::RenderWindow _window;
+
+            bool _prevMouseState = false;
+            bool _prevHoverState = false;
     };
 
 }

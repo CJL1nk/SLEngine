@@ -11,45 +11,79 @@
 namespace UI {
 
 	/**
-	* The Button class creates a clickable button with the ability to call some user specified function
+	* The Button class creates a clickable button with the ability to call some user specified function on presses and hovers.
+	* Each button MUST have a position and sprite to display on screen. The button's hitbox will always be the same size as the sprite.
 	*/
 	class Button : public UIObject {
 
 		public:
-			Button();
+			/**
+			 * Default constructor, initializes a button at a given position with a given sprite
+			 * @param pos
+			 * @param sprite
+			 */
 			Button(Position pos, sf::Sprite& sprite);
-			template <typename Func, typename... Args>
-			Button(const Position pos, sf::Sprite& sprite, Func&& f, Args&&... args) : _function(f), _pos(pos), _sprite(&sprite) {
-				_sprite->setPosition({_pos.x, _pos.y});
-			};
 
-			template <typename Func, typename... Args>
-			void setPress(Func&& f, Args&&... args) {
-				// Store a lambda that captures the function and its arguments
-				this->_function = std::bind(std::forward<Func>(f), std::forward<Args>(args)...);
-			}
-			template <typename Func, typename... Args>
-			void setOnHover(Func&& f, Args&&... args) {
-				// Store a lambda that captures the function and its arguments
-				this->_onHoverFunc = std::bind(std::forward<Func>(f), std::forward<Args>(args)...);
-			}
-			template <typename Func, typename... Args>
-			void setOffHover(Func&& f, Args&&... args) {
-				// Store a lambda that captures the function and its arguments
-				this->_offHoverFunc = std::bind(std::forward<Func>(f), std::forward<Args>(args)...);
-			}
+			/**
+			 * Sets the function to call when the button is pressed
+			 * @param func Function to call on press
+			 */
+			void setOnPress(const std::function<void()>& func);
+			/**
+			 * Sets the function to call when the button is released
+			 * @param func Function to call on release
+			 */
+			void setOnRelease(const std::function<void()>& func);
+			/**
+			 * Sets the function to call when the button is hovered over
+			 * @param func Function to call when the button is hovered over
+			 */
+			void setOnHover(const std::function<void()>& func);
+			/**
+			 * Sets the function to call when the button is no longer hovered over
+			 * @param func Function to call when the button is no longer hovered over
+			 */
+			void setOffHover(const std::function<void()>& func);
 
-	        void press() const;
-            void onHover();
-            void offHover();
+			/**
+			 * Calls the function the user gave it to call on button press, if it exists
+			 */
+			void onPress() const;
+			/**
+			 * Calls the function the user gave it to call on button release, if it exists
+			 */
+	        void onRelease() const;
+			/**
+			 * Calls the function the user gave it to call on button hover, if it exists
+			 */
+            void onHover() const;
+			/**
+			 * Calls the function the user gave it to call off button hover, if it exists
+			 */
+            void offHover() const;
 
-		    [[nodiscard]] bool isHovered(float x, float y) const;
+			/**
+			 * Determines whether some given position "hovers" within the buttons bounds
+			 * @param x X position
+			 * @param y Y position
+			 * @return True if it does hover, false otherwise
+			 */
+			[[nodiscard]] bool isHovered(float x, float y) const;
 
-		    [[nodiscard]] Position getPos() const override;
+			/**
+			 * Returns the position of referenced Button object
+			 * @return Position of referenced Button object
+			 */
+			[[nodiscard]] Position getPos() const override;
+			/**
+			 * Returns a pointer to the sprite of referenced Button object
+			 * @return Pointer to the sprite of referenced Button object
+			 */
 			[[nodiscard]] const sf::Sprite* getSprite() const override;
 
 	    private:
-			std::function<void()> _function;
+			std::function<void()> _onPressFunc;
+			std::function<void()> _onReleaseFunc;
 			std::function<void()> _onHoverFunc;
 			std::function<void()> _offHoverFunc;
 

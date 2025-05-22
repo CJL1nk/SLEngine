@@ -59,20 +59,38 @@ namespace UI
 
     void GameWindow::update() {
 
+        sf::Vector2i mousePos = sf::Mouse::getPosition(this->_window);
+        bool currMouseState = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+
+        const std::vector<Button*> buttons = this->_scene->getButtons();
+
         while (const std::optional event = this->_window.pollEvent()) { // Grab event object
             if (event->is<sf::Event::Closed>()) this->_window.close(); // If they pressed X, signal for close
         }
 
-        // Check if any buttons were pressed and call them
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        // Loop through all buttons, check if hovering and clicking
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons[i]->isHovered(mousePos.x, mousePos.y)) {
 
-            const std::vector<Button*> buttons = this->_scene->getButtons();
+                if (this->_prevHoverState == false) { // If we were not hovering last frame, call the hover function
+                    buttons[i]->onHover();
+                    this->_prevHoverState = true;
+                }
 
-            for (int i = 0; i < buttons.size(); i++) {
-                if (buttons[i]->isHovered(sf::Mouse::getPosition(this->_window).x, sf::Mouse::getPosition(this->_window).y)) {
-                    buttons[i]->press();
+                if (currMouseState == true && currMouseState != this->_prevMouseState) { // IF mouse is down AND it wasn't down last frame
+                    buttons[i]->onPress();
+                } else if (currMouseState == false && currMouseState != this->_prevMouseState) {
+                    buttons[i]->onRelease();
                 }
             }
+            else if (this->_prevHoverState == true) { // If they're done hovering, call unhover function
+                buttons[i]->offHover();
+                this->_prevHoverState = false;
+            }
+        }
+
+        if (currMouseState != this->_prevMouseState) {
+            this->_prevMouseState = currMouseState;
         }
     }
 

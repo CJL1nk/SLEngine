@@ -8,30 +8,45 @@
 
 namespace UI {
 
-    Button::Button() : _function(nullptr), _pos(Position()) {
-        const sf::Texture texture = sf::Texture(sf::Vector2u{0,0});
-        _sprite = new sf::Sprite(texture);
-        _sprite->setPosition({_pos.x, _pos.y});
+    Button::Button(const Position pos, sf::Sprite& sprite) : _onPressFunc(nullptr), _onHoverFunc(nullptr), _offHoverFunc(nullptr), _pos(pos), _sprite(&sprite) {
+        this->_sprite->setPosition({this->_pos.x, this->_pos.y});
+        sf::FloatRect bounds = this->_sprite->getLocalBounds();
+        this->_sprite->setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f}); // Set center of object to center of sprite, NOT corner
     }
 
-    Button::Button(const Position pos, sf::Sprite& sprite) : _function(nullptr), _pos(pos), _sprite(&sprite) {
-        _sprite->setPosition({_pos.x, _pos.y});
+    void Button::setOnPress(const std::function<void()>& func) {
+        this->_onPressFunc = func;
+    }
+    void Button::setOnRelease(const std::function<void()>& func) {
+        this->_onReleaseFunc = func;
+    }
+    void Button::setOnHover(const std::function<void()>& func) {
+        this->_onHoverFunc = func;
+    }
+    void Button::setOffHover(const std::function<void()>& func) {
+        this->_offHoverFunc = func;
     }
 
-    void Button::press() const {
-        if (this->_function) { // If they've added a function, call it
-            this->_function();
+    void Button::onPress() const {
+        if (this->_onPressFunc) { // If they've added a function, call it
+            this->_onPressFunc();
         }
     }
 
-    void Button::onHover() {
-        if (this->_onHoverFunc) {
+    void Button::onRelease() const {
+        if (this->_onReleaseFunc) { // If they've added a function, call it
+            this->_onReleaseFunc();
+        }
+    }
+
+    void Button::onHover() const {
+        if (this->_onHoverFunc) { // If they've added a function, call it
             this->_onHoverFunc();
         }
     }
 
-    void Button::offHover() {
-        if (this->_offHoverFunc) {
+    void Button::offHover() const {
+        if (this->_offHoverFunc) { // If they've added a function, call it
             this->_offHoverFunc();
         }
     }

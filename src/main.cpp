@@ -17,7 +17,7 @@ int main() {
 	// Create object
 	sf::Texture texture("../textures/landscape.png", false, sf::IntRect({0, 0}, {0, 0}));
 	sf::Sprite spr = sf::Sprite(texture);
-	StaticObject background = StaticObject(Position(0, 0, 0), spr);
+	StaticObject background = StaticObject(Position(500, 350, 0), spr);
 
 	sf::Texture texture2("../textures/wood_1.jpg", false, sf::IntRect({0, 0}, {64, 64}));
 	sf::Sprite spr2 = sf::Sprite(texture2);
@@ -32,8 +32,13 @@ int main() {
 	// Button initialization
 	sf::Texture texture3("../textures/button.png", false, sf::IntRect({0, 0}, {516, 516}));
 	sf::Sprite spr3 = sf::Sprite(texture3);
-	auto buttonFunc = []() {std::cout << "BUTTON CLICKED!!" << std::endl;};
-	UI::Button btn = UI::Button(Position(120, 120, 0), spr3, buttonFunc);
+	spr3.setScale(sf::Vector2f(0.2f, 0.2f));
+	UI::Button btn = UI::Button(Position(120, 120, 0), spr3);
+
+	btn.setOnPress([&spr3]() {spr3.setColor(sf::Color::Cyan);});
+	btn.setOnRelease([&spr3]() {spr3.setColor(sf::Color::White);});
+	btn.setOnHover([&spr3]() {spr3.setScale(sf::Vector2f(0.22f, 0.22f));});
+	btn.setOffHover([&spr3]() {spr3.setScale(sf::Vector2f(0.2f, 0.2f));});
 
 	// Create scene and add our object
 	UI::Scene scene = UI::Scene();
@@ -75,12 +80,12 @@ int main() {
 		}
 
 		background.move(Position(-0.5, 0));
+		wood2.rotate(0.5);
 
 		if (wood.collidesWith(wood2)) {
 			spr3.setColor(sf::Color::Blue);
 			scene.removeObject(wood2);
 		} else {
-			spr3.setColor(sf::Color::Red);
 		}
 	}
 
