@@ -9,19 +9,19 @@
 namespace UI
 {
 
-    GameWindow::GameWindow() {
+    GameWindow::GameWindow() : _camera(nullptr) {
         this->_window = sf::RenderWindow(sf::VideoMode({1280, 720}), "Window");
         this->_window.setFramerateLimit(30);
         this->_scene = new UI::Scene();
     }
 
-    GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title) {
+    GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title) : _camera(nullptr) {
         this->_window = sf::RenderWindow(sf::VideoMode({width, height}), title);
         this->_window.setFramerateLimit(fps);
         this->_scene = new UI::Scene();
     }
 
-    GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title, Scene &scene) {
+    GameWindow::GameWindow(unsigned int width, unsigned int height, unsigned int fps, const std::string& title, Scene &scene) : _camera(nullptr) {
         this->_window = sf::RenderWindow(sf::VideoMode({width, height}), title);
         this->_window.setFramerateLimit(fps);
 
@@ -31,6 +31,11 @@ namespace UI
     bool GameWindow::setScene(Scene &scene) {
         this->_scene = &scene;
         return true;
+    }
+
+    void GameWindow::setCamera(Camera& camera) {
+        this->_camera = &camera;
+        this->_window.setView(*this->_camera->getView());
     }
 
     void GameWindow::drawScene() {
@@ -57,15 +62,27 @@ namespace UI
         this->_window.display();
     }
 
+    void GameWindow::resize(const unsigned int x, const unsigned int y) {
+        this->_window.setSize(sf::Vector2u(x, y));
+    }
+
+    void GameWindow::resize(const unsigned int x, const unsigned int y, unsigned int fps) {
+        this->_window.setSize(sf::Vector2u(x, y));
+        this->_window.setFramerateLimit(fps);
+    }
+
     void GameWindow::update() {
 
-        sf::Vector2i mousePos = sf::Mouse::getPosition(this->_window);
-        bool currMouseState = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+        const sf::Vector2i mousePos = sf::Mouse::getPosition(this->_window);
+        const bool currMouseState = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 
         const std::vector<Button*> buttons = this->_scene->getButtons();
 
         while (const std::optional event = this->_window.pollEvent()) { // Grab event object
             if (event->is<sf::Event::Closed>()) this->_window.close(); // If they pressed X, signal for close
+            else if (event->is<sf::Event::Resized>())
+            {
+            }
         }
 
         // Loop through all buttons, check if hovering and clicking
@@ -102,4 +119,7 @@ namespace UI
         return _window.isOpen();
     }
 
+    Camera *GameWindow::getCamera() const {
+        return this->_camera;
+    }
 }

@@ -9,6 +9,7 @@
 #include "menu/GameWindow.h"
 #include "menu/Scene.h"
 #include "menu/StaticTexture.h"
+#include "menu/Camera.h"
 
 #include <SFML/Audio.hpp>
 
@@ -20,6 +21,9 @@ int main() {
 	// Create window and set its scene, scene can also be passed as another arg to constructor
 	UI::GameWindow window = UI::GameWindow(480, 480, 60, "New Window!");
 	window.setScene(scene);
+
+	UI::Camera cam = UI::Camera();
+	window.setCamera(cam);
 
 	// Create some objects
 	sf::Texture appleTexture("../textures/apple.png", false, sf::IntRect({0, 0}, {0, 0}));

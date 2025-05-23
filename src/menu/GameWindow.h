@@ -7,6 +7,7 @@
 
 #include "../includes.h"
 #include "Scene.h"
+#include "Camera.h"
 
 namespace UI {
 
@@ -46,6 +47,12 @@ namespace UI {
              */
             bool setScene(Scene& scene);
             /**
+             * Sets the camera for referenced GameWindow object
+             * @param camera Camera to set
+             */
+            void setCamera(Camera& camera);
+
+            /**
              * Draws all elements of current scene in window
              */
             void drawScene();
@@ -76,9 +83,16 @@ namespace UI {
              */
             bool isOpen() const;
 
+            /**
+             * Returns a pointer to the camera of referenced window
+             * @return Pointer to the camera of referenced window
+             */
+            Camera* getCamera() const;
+
         private:
             Scene* _scene;
             sf::RenderWindow _window;
+            Camera* _camera;
 
             bool _prevMouseState = false;
             bool _prevHoverState = false;
