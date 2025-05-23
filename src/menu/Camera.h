@@ -25,7 +25,7 @@ namespace UI {
             void rotate(float angle) const;
             bool attachObject(GameObject& obj);
 
-            bool hasAttachedObject() const;
+            [[nodiscard]] bool hasAttachedObject() const;
 
             void setPos(Position pos);
             void setPos(float x, float y);
