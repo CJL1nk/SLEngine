@@ -26,6 +26,10 @@ namespace UI {
              * @return Sprite of referenced object
              */
             [[nodiscard]] virtual const sf::Sprite* getSprite() const = 0;
+
+            virtual void setPos(Position& pos) = 0;
+
+
     };
 
 }

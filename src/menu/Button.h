@@ -46,6 +46,12 @@ namespace UI {
 			void setOffHover(const std::function<void()>& func);
 
 			/**
+			 * Sets the position of current UI object
+			 * @param pos Position to set
+			 */
+			void setPos(Position &pos) override;
+
+			/**
 			 * Calls the function the user gave it to call on button press, if it exists
 			 */
 			void onPress() const;

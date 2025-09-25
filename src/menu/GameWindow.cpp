@@ -55,7 +55,11 @@ namespace UI
         // Draw all UI objects above everything else
         for (int i = 0; i <= this->_scene->getHighestUIZ(); i++) {
             for (int j = 0; j < uiObjectMap[i].size(); j++) { // Grab each UI object and render them in Z order
-                this->_window.draw(*uiObjectMap[i][j]->getSprite());
+                UIObject* newObj = uiObjectMap[i][j];
+                Position newPos = Position(this->_camera->getView()->getSize().x - newObj->getPos().x, this->_camera->getView()->getSize().y - newObj->getPos().y,
+                    newObj->getPos().zOrder, newObj->getPos().rotation);
+                newObj->setPos(newPos);
+                this->_window.draw(*newObj->getSprite());
             }
         }
 
@@ -77,6 +81,7 @@ namespace UI
         const bool currMouseState = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 
         const std::vector<Button*> buttons = this->_scene->getButtons();
+        this->_window.setView(*this->_camera->getView());
 
         while (const std::optional event = this->_window.pollEvent()) { // Grab event object
             if (event->is<sf::Event::Closed>()) this->_window.close(); // If they pressed X, signal for close

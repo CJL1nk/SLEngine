@@ -45,6 +45,15 @@ namespace UI {
         return true;
     }
 
+    void Camera::setPos(Position pos) {
+        this->_view->setCenter(sf::Vector2f(pos.x, pos.y));
+    }
+
+    void Camera::setPos(float x, float y) {
+        this->_view->setCenter(sf::Vector2f(x, y));
+    }
+
+
     bool Camera::hasAttachedObject() const {
         return this->_attachedObject != nullptr;
     }

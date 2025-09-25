@@ -27,6 +27,11 @@ namespace UI {
         this->_offHoverFunc = func;
     }
 
+    void Button::setPos(Position &pos) {
+        this->_pos = pos;
+        this->_sprite->setPosition(sf::Vector2f(this->_pos.x, this->_pos.y));
+    }
+
     void Button::onPress() const {
         if (this->_onPressFunc) { // If they've added a function, call it
             this->_onPressFunc();

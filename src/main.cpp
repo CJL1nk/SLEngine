@@ -22,7 +22,8 @@ int main() {
 	UI::GameWindow window = UI::GameWindow(480, 480, 60, "New Window!");
 	window.setScene(scene);
 
-	UI::Camera cam = UI::Camera();
+	UI::Camera cam = UI::Camera(0.0f, 0.0f);
+	sf::Vector2f camPos = sf::Vector2f(0.0f,  0.0f);
 	window.setCamera(cam);
 
 	// Create some objects
@@ -128,6 +129,19 @@ int main() {
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 			apple.move(Position(1.5, 0));
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I)) {
+			cam.move(0.0f, -5.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) {
+			cam.move(-5.0f, 0.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K)) {
+			cam.move(0.0f, 5.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) {
+			cam.move(5.0f, 0.0f);
 		}
 
 		background.move(Position(-0.5, 0));
