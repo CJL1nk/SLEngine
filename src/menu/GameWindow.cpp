@@ -56,7 +56,7 @@ namespace UI
         for (int i = 0; i <= this->_scene->getHighestUIZ(); i++) {
             for (int j = 0; j < uiObjectMap[i].size(); j++) { // Grab each UI object and render them in Z order
                 UIObject* newObj = uiObjectMap[i][j];
-                Position newPos = Position(this->_camera->getView()->getSize().x - newObj->getPos().x, this->_camera->getView()->getSize().y - newObj->getPos().y,
+                Position newPos = Position(this->_window.getView().getSize().x - newObj->getPos().x, this->_window.getView().getSize().y - newObj->getPos().y,
                     newObj->getPos().zOrder, newObj->getPos().rotation);
                 newObj->setPos(newPos);
                 this->_window.draw(*newObj->getSprite());

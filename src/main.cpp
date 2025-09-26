@@ -23,7 +23,6 @@ int main() {
 	window.setScene(scene);
 
 	UI::Camera cam = UI::Camera(0.0f, 0.0f);
-	sf::Vector2f camPos = sf::Vector2f(0.0f,  0.0f);
 	window.setCamera(cam);
 
 	// Create some objects
